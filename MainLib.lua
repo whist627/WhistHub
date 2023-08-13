@@ -198,6 +198,16 @@ function HelloHub.CreateWin(title)
         local TabFramePad = Instance.new("UIPadding", TabFrame)
         local TabFrameList = Instance.new("UIListLayout", TabFrame)
 
+        local function upSize()
+            local cS = TabFrameList.AbsoluteContentSize
+
+            tween:Create(
+                TabFrame,
+                tweenInfo(.15, Enum.EasingStyle.Linear, Enum.EasingDirection.In),
+                {CanvasSize = UDim2.new(0, cS.X, 0, cS.Y)}
+            ):Play()
+        end
+
         TabBtn.Name = tabTitle .. "TabBtn"
         TabBtn.Size = UDim2.new(1, 0, 0, 35)
         TabBtn.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -236,6 +246,10 @@ function HelloHub.CreateWin(title)
             end
         )
 
+        upSize()
+        TabFrame.ChildAdded:Connect(upSize)
+        TabFrame.ChildRemoved:Connect(upSize)
+
         TabBtn.MouseLeave:Connect(
             function()
                 if currenttab ~= TabBtn.Name then
@@ -250,6 +264,7 @@ function HelloHub.CreateWin(title)
 
         TabBtn.MouseButton1Click:Connect(
             function()
+                upSize()
                 for i, v in next, ContentHolder:GetChildren() do
                     if v.Name == "TabFrame" then
                         v.Visible = false
@@ -280,6 +295,7 @@ function HelloHub.CreateWin(title)
             ):Play()
             currenttab = TabBtn.Name
             TabFrame.Visible = true
+            upSize()
         else
             TabBtn.BackgroundTransparency = 1
             TabBtn.TextColor3 = Color3.fromRGB(180, 180, 180)
@@ -312,6 +328,7 @@ function HelloHub.CreateWin(title)
             LabelTitle.TextXAlignment = Enum.TextXAlignment.Left
             LabelTitle.TextSize = 14
             LabelTitle.Font = Enum.Font.Ubuntu
+            upSize()
         end
 
         function Content:NewButton(btnTitle, callback)
@@ -353,6 +370,8 @@ function HelloHub.CreateWin(title)
             ButtonIcon.AnchorPoint = Vector2.new(1, 0)
             ButtonIcon.Image = "rbxassetid://14257223921"
             ButtonIcon.ImageColor3 = Color3.fromRGB(255, 255, 255)
+
+            upSize()
 
             Button.MouseButton1Click:Connect(
                 function()
@@ -442,6 +461,8 @@ function HelloHub.CreateWin(title)
             ToggleBtnCircle.Position = UDim2.new(.2, -6, .15, -1)
             ToggleBtnCircle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
             ToggleBtnCircleCorner.CornerRadius = UDim.new(1, 0)
+
+            upSize()
 
             Toggle.MouseButton1Click:Connect(
                 function()
@@ -539,6 +560,8 @@ function HelloHub.CreateWin(title)
             SliderValue.TextSize = 14
             SliderValue.Font = Enum.Font.Ubuntu
             SliderValue.TextTransparency = 1
+
+            upSize()
 
             local mouse = game:GetService("Players").LocalPlayer:GetMouse()
 
