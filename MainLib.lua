@@ -1,7 +1,6 @@
 local HelloHub = {}
 local UIS = game:GetService("UserInputService")
 local tween = game:GetService("TweenService")
-local viewport = workspace.CurrentCamera.ViewportSize
 local coreGui = game:GetService("CoreGui")
 local tweenInfo = TweenInfo.new
 
@@ -77,32 +76,28 @@ function HelloHub.CreateWin(title)
     local tb = true
     local currenttab = ""
     local Hello = Instance.new("ScreenGui", coreGui)
-    local MainFrame = Instance.new("Frame", Hello)
-    local MainCorner = Instance.new("UICorner", MainFrame)
-    local ShadowHolder = Instance.new("Frame", MainFrame)
+    local Main = Instance.new("Frame", Hello)
+    local MainCorner = Instance.new("UICorner", Main)
+    local ShadowHolder = Instance.new("Frame", Main)
     local Shadow = Instance.new("ImageLabel", ShadowHolder)
-    local UITitle = Instance.new("TextLabel", MainFrame)
-    local Title = Instance.new("TextLabel", MainFrame)
-    local CloseBtn = Instance.new("ImageButton", MainFrame)
-    local TabHolder = Instance.new("Frame", MainFrame)
-    local TabList = Instance.new("UIListLayout", TabHolder)
+    local UITitle = Instance.new("TextLabel", Main)
+    local Title = Instance.new("TextLabel", Main)
+    local Close = Instance.new("ImageButton", Main)
+    local TabHolder = Instance.new("Frame", Main)
+    local TabListing = Instance.new("UIListLayout", TabHolder)
     local TabPad = Instance.new("UIPadding", TabHolder)
-    local ContentHolder = Instance.new("Frame", MainFrame)
+    local Contents = Instance.new("Frame", Main)
 
     Hello.Name = RanName
     Hello.ResetOnSpawn = false
     Hello.IgnoreGuiInset = true
 
-    MainFrame.Name = "MainFrame"
-    MainFrame.Size = UDim2.new(0, 530, 0, 300)
-    MainFrame.Position =
-        UDim2.fromOffset(
-        (viewport.X / 2) - (MainFrame.Size.X.Offset / 2),
-        (viewport.Y / 2) - (MainFrame.Size.Y.Offset / 2)
-    )
-    MainFrame.BackgroundColor3 = Color3.fromRGB(15, 15, 15)
-    MainFrame.Active = true
-    MainFrame.ClipsDescendants = true
+    Main.Name = "Main"
+    Main.Size = UDim2.new(0, 530, 0, 300)
+    Main.Position = UDim2.new(0.336503863, 0, 0.275485456, 0)
+    Main.BackgroundColor3 = Color3.fromRGB(15, 15, 15)
+    Main.Active = true
+    Main.ClipsDescendants = true
     MainCorner.CornerRadius = UDim.new(0, 6)
 
     ShadowHolder.Name = "ShadowHolder"
@@ -142,103 +137,115 @@ function HelloHub.CreateWin(title)
     Title.TextSize = 17
     Title.Font = Enum.Font.Ubuntu
 
-    CloseBtn.Name = "CloseBtn"
-    CloseBtn.Size = UDim2.new(0, 20, 0, 20)
-    CloseBtn.Position = UDim2.new(1, -30, 0, 10)
-    CloseBtn.BackgroundColor3 = Color3.fromRGB(1, 1, 1)
-    CloseBtn.BackgroundTransparency = 1
-    CloseBtn.Image = "rbxassetid://14243709419"
-    CloseBtn.ImageColor3 = Color3.fromRGB(120, 120, 120)
-    CloseBtn.AutoButtonColor = false
+    Close.Name = "Close"
+    Close.Size = UDim2.new(0, 20, 0, 20)
+    Close.Position = UDim2.new(1, -30, 0, 10)
+    Close.BackgroundColor3 = Color3.fromRGB(1, 1, 1)
+    Close.BackgroundTransparency = 1
+    Close.Image = "rbxassetid://14243709419"
+    Close.ImageColor3 = Color3.fromRGB(120, 120, 120)
+    Close.AutoButtonColor = false
 
     TabHolder.Name = "TabHolder"
     TabHolder.Size = UDim2.new(0, 135, .9, 0)
     TabHolder.Position = UDim2.new(0, 6, .1, 0)
     TabHolder.BackgroundColor3 = Color3.fromRGB(1, 1, 1)
     TabHolder.BackgroundTransparency = 1
-    TabList.Padding = UDim.new(0, 1)
-    TabList.SortOrder = Enum.SortOrder.LayoutOrder
+    TabListing.Padding = UDim.new(0, 1)
+    TabListing.SortOrder = Enum.SortOrder.LayoutOrder
     TabPad.PaddingBottom = UDim.new(0, 8)
     TabPad.PaddingTop = UDim.new(0, 8)
 
-    ContentHolder.Name = "ContentContainer"
-    ContentHolder.Size = UDim2.new(1, -152, 1, -37.5)
-    ContentHolder.Position = UDim2.new(1, -6, 0, 37.5)
-    ContentHolder.BackgroundColor3 = Color3.fromRGB(1, 1, 1)
-    ContentHolder.BackgroundTransparency = 1
-    ContentHolder.AnchorPoint = Vector2.new(1, 0)
+    Contents.Name = "Contents"
+    Contents.Size = UDim2.new(1, -152, 1, -44)
+    Contents.Position = UDim2.new(1, -6, 0, 37.5)
+    Contents.BackgroundColor3 = Color3.fromRGB(1, 1, 1)
+    Contents.BackgroundTransparency = 1
+    Contents.AnchorPoint = Vector2.new(1, 0)
 
-    CloseBtn.MouseButton1Click:Connect(
+    Close.MouseButton1Click:Connect(
         function()
-            MainFrame:TweenSize(UDim2.new(0, 0, 0, 0), Enum.EasingDirection.Out, Enum.EasingStyle.Quart, .3, true)
+            Main:TweenSizeAndPosition(
+                UDim2.new(0, 0, 0, 0),
+                UDim2.new(
+                    0,
+                    Main.AbsolutePosition.X + (Main.AbsoluteSize.X / 2),
+                    0,
+                    Main.AbsolutePosition.Y + (Main.AbsoluteSize.Y / 2)
+                ),
+                Enum.EasingDirection.Out,
+                Enum.EasingStyle.Quad,
+                .1,
+                true
+            )
             task.wait(.3)
             Hello:Destroy()
         end
     )
 
-    CloseBtn.MouseEnter:Connect(
+    Close.MouseEnter:Connect(
         function()
-            CloseBtn.ImageColor3 = Color3.fromRGB(255, 255, 255)
+            Close.ImageColor3 = Color3.fromRGB(255, 255, 255)
         end
     )
 
-    CloseBtn.MouseLeave:Connect(
+    Close.MouseLeave:Connect(
         function()
-            CloseBtn.ImageColor3 = Color3.fromRGB(120, 120, 120)
+            Close.ImageColor3 = Color3.fromRGB(120, 120, 120)
         end
     )
 
-    HelloHub:MakeDraggable(MainFrame)
+    HelloHub:MakeDraggable(Main)
     local TabCreate = {}
     function TabCreate:NewTab(tabTitle)
         tabTitle = tabTitle or "Tab"
-        local TabBtn = Instance.new("TextButton", TabHolder)
-        local TabBtnCorner = Instance.new("UICorner", TabBtn)
-        local TabFrame = Instance.new("ScrollingFrame", ContentHolder)
-        local TabFramePad = Instance.new("UIPadding", TabFrame)
-        local TabFrameList = Instance.new("UIListLayout", TabFrame)
+        local Tab = Instance.new("TextButton", TabHolder)
+        local TabCorner = Instance.new("UICorner", Tab)
+        local TabContent = Instance.new("ScrollingFrame", Contents)
+        local TabContentPad = Instance.new("UIPadding", TabContent)
+        local TabContentList = Instance.new("UIListLayout", TabContent)
 
         local function upSize()
-            local cS = TabFrameList.AbsoluteContentSize
+            local cS = TabContentList.AbsoluteContentSize
 
             tween:Create(
-                TabFrame,
+                TabContent,
                 tweenInfo(.15, Enum.EasingStyle.Linear, Enum.EasingDirection.In),
                 {CanvasSize = UDim2.new(0, cS.X, 0, cS.Y)}
             ):Play()
         end
 
-        TabBtn.Name = tabTitle .. "TabBtn"
-        TabBtn.Size = UDim2.new(1, 0, 0, 35)
-        TabBtn.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-        TabBtn.BackgroundTransparency = 1
-        TabBtn.BorderSizePixel = 0
-        TabBtn.Text = tabTitle
-        TabBtn.TextColor3 = Color3.fromRGB(180, 180, 180)
-        TabBtn.TextSize = 14
-        TabBtn.Font = Enum.Font.GothamMedium
-        TabBtn.AutoButtonColor = false
-        TabBtnCorner.CornerRadius = UDim.new(0, 5)
+        Tab.Name = tabTitle .. "Tab"
+        Tab.Size = UDim2.new(1, 0, 0, 35)
+        Tab.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+        Tab.BackgroundTransparency = 1
+        Tab.BorderSizePixel = 0
+        Tab.Text = tabTitle
+        Tab.TextColor3 = Color3.fromRGB(180, 180, 180)
+        Tab.TextSize = 14
+        Tab.Font = Enum.Font.GothamMedium
+        Tab.AutoButtonColor = false
+        TabCorner.CornerRadius = UDim.new(0, 5)
 
-        TabFrame.Name = "TabFrame"
-        TabFrame.Size = UDim2.new(1, 0, 1, 0)
-        TabFrame.BackgroundColor3 = Color3.fromRGB(1, 1, 1)
-        TabFrame.BackgroundTransparency = 1
-        TabFrame.BorderSizePixel = 0
-        TabFrame.ScrollBarThickness = 7
-        TabFrame.ClipsDescendants = true
-        TabFramePad.PaddingBottom = UDim.new(0, 1)
-        TabFramePad.PaddingLeft = UDim.new(0, 1)
-        TabFramePad.PaddingRight = UDim.new(0, 1)
-        TabFramePad.PaddingTop = UDim.new(0, 1)
-        TabFrameList.Padding = UDim.new(0, 6)
-        TabFrameList.SortOrder = Enum.SortOrder.LayoutOrder
+        TabContent.Name = "TabContent"
+        TabContent.Size = UDim2.new(1, 0, 1, 0)
+        TabContent.BackgroundColor3 = Color3.fromRGB(1, 1, 1)
+        TabContent.BackgroundTransparency = 1
+        TabContent.BorderSizePixel = 0
+        TabContent.ScrollBarThickness = 7
+        TabContent.ClipsDescendants = true
+        TabContentPad.PaddingBottom = UDim.new(0, 1)
+        TabContentPad.PaddingLeft = UDim.new(0, 1)
+        TabContentPad.PaddingRight = UDim.new(0, 1)
+        TabContentPad.PaddingTop = UDim.new(0, 1)
+        TabContentList.Padding = UDim.new(0, 6)
+        TabContentList.SortOrder = Enum.SortOrder.LayoutOrder
 
-        TabBtn.MouseEnter:Connect(
+        Tab.MouseEnter:Connect(
             function()
-                if currenttab ~= TabBtn.Name then
+                if currenttab ~= Tab.Name then
                     tween:Create(
-                        TabBtn,
+                        Tab,
                         tweenInfo(.3, Enum.EasingStyle.Quart, Enum.EasingDirection.Out, 0, false, 0),
                         {TextColor3 = Color3.fromRGB(255, 255, 255)}
                     ):Play()
@@ -247,14 +254,14 @@ function HelloHub.CreateWin(title)
         )
 
         upSize()
-        TabFrame.ChildAdded:Connect(upSize)
-        TabFrame.ChildRemoved:Connect(upSize)
+        TabContent.ChildAdded:Connect(upSize)
+        TabContent.ChildRemoved:Connect(upSize)
 
-        TabBtn.MouseLeave:Connect(
+        Tab.MouseLeave:Connect(
             function()
-                if currenttab ~= TabBtn.Name then
+                if currenttab ~= Tab.Name then
                     tween:Create(
-                        TabBtn,
+                        Tab,
                         tweenInfo(.3, Enum.EasingStyle.Quart, Enum.EasingDirection.Out, 0, false, 0),
                         {TextColor3 = Color3.fromRGB(180, 180, 180)}
                     ):Play()
@@ -262,14 +269,14 @@ function HelloHub.CreateWin(title)
             end
         )
 
-        TabBtn.MouseButton1Click:Connect(
+        Tab.MouseButton1Click:Connect(
             function()
                 upSize()
-                for i, v in next, ContentHolder:GetChildren() do
-                    if v.Name == "TabFrame" then
+                for i, v in next, Contents:GetChildren() do
+                    if v.Name == "TabContent" then
                         v.Visible = false
                     end
-                    TabFrame.Visible = true
+                    TabContent.Visible = true
                 end
                 for i, v in next, TabHolder:GetChildren() do
                     if v.ClassName == "TextButton" then
@@ -278,40 +285,40 @@ function HelloHub.CreateWin(title)
                     end
                 end
                 tween:Create(
-                    TabBtn,
+                    Tab,
                     tweenInfo(.3, Enum.EasingStyle.Quart, Enum.EasingDirection.Out, 0, false, 0),
                     {BackgroundTransparency = .9, TextColor3 = Color3.fromRGB(255, 255, 255)}
                 ):Play()
-                currenttab = TabBtn.Name
+                currenttab = Tab.Name
             end
         )
 
         if tb then
             tb = false
             tween:Create(
-                TabBtn,
+                Tab,
                 tweenInfo(.3, Enum.EasingStyle.Quart, Enum.EasingDirection.Out, 0, false, 0),
                 {BackgroundTransparency = .9, TextColor3 = Color3.fromRGB(255, 255, 255)}
             ):Play()
-            currenttab = TabBtn.Name
-            TabFrame.Visible = true
+            currenttab = Tab.Name
+            TabContent.Visible = true
             upSize()
         else
-            TabBtn.BackgroundTransparency = 1
-            TabBtn.TextColor3 = Color3.fromRGB(180, 180, 180)
-            TabFrame.Visible = false
+            Tab.BackgroundTransparency = 1
+            Tab.TextColor3 = Color3.fromRGB(180, 180, 180)
+            TabContent.Visible = false
         end
 
         local focus = false
         local Content = {}
         function Content:NewLabel(labelTitle)
             labelTitle = labelTitle or "Label"
-            local Label = Instance.new("Frame", TabFrame)
+            local Label = Instance.new("Frame", TabContent)
             local LabelPad = Instance.new("UIPadding", Label)
             local LabelTitle = Instance.new("TextLabel", Label)
 
             Label.Name = "Label"
-            Label.Size = UDim2.new(1, -10, 0, 21)
+            Label.Size = UDim2.new(1, -10, 0, 18)
             Label.BackgroundColor3 = Color3.fromRGB(1, 1, 1)
             Label.BackgroundTransparency = 1
             LabelPad.PaddingBottom = UDim.new(0, 6)
@@ -335,7 +342,7 @@ function HelloHub.CreateWin(title)
             btnTitle = btnTitle or "Button"
             callback = callback or function()
                 end
-            local Button = Instance.new("TextButton", TabFrame)
+            local Button = Instance.new("TextButton", TabContent)
             local ButtonPad = Instance.new("UIPadding", Button)
             local ButtonCorner = Instance.new("UICorner", Button)
             local BtnTitle = Instance.new("TextLabel", Button)
@@ -419,7 +426,7 @@ function HelloHub.CreateWin(title)
             callback = callback or function()
                 end
             local toggled = false
-            local Toggle = Instance.new("TextButton", TabFrame)
+            local Toggle = Instance.new("TextButton", TabContent)
             local TogglePad = Instance.new("UIPadding", Toggle)
             local ToggleCorner = Instance.new("UICorner", Toggle)
             local ToggleTitle = Instance.new("TextLabel", Toggle)
@@ -505,7 +512,7 @@ function HelloHub.CreateWin(title)
             max = max or 100
             callback = callback or function()
                 end
-            local Slider = Instance.new("Frame", TabFrame)
+            local Slider = Instance.new("Frame", TabContent)
             local SliderPad = Instance.new("UIPadding", Slider)
             local SliderCorner = Instance.new("UICorner", Slider)
             local SliderTitle = Instance.new("TextLabel", Slider)
@@ -535,7 +542,7 @@ function HelloHub.CreateWin(title)
             SliderTitle.Font = Enum.Font.Ubuntu
 
             SliderBack.Name = "SliderBack"
-            SliderBack.Size = UDim2.new(1, 0, 0, 6)
+            SliderBack.Size = UDim2.new(0, 354, 0, 6)
             SliderBack.Position = UDim2.new(0, 0, 1, 0)
             SliderBack.BackgroundColor3 = Color3.fromRGB(15, 15, 15)
             SliderBack.AnchorPoint = Vector2.new(0, 1)
@@ -576,7 +583,7 @@ function HelloHub.CreateWin(title)
                         ):Play()
                         value =
                             math.floor(
-                            (((tonumber(max) - tonumber(min)) / 355) * SliderDrag.AbsoluteSize.X) + tonumber(min)
+                            (((tonumber(max) - tonumber(min)) / 354) * SliderDrag.AbsoluteSize.X) + tonumber(min)
                         ) or 0
                         pcall(
                             function()
@@ -584,7 +591,7 @@ function HelloHub.CreateWin(title)
                             end
                         )
                         SliderDrag:TweenSize(
-                            UDim2.new(0, math.clamp(mouse.X - SliderDrag.AbsolutePosition.X, 0, 355), 0, 6),
+                            UDim2.new(0, math.clamp(mouse.X - SliderDrag.AbsolutePosition.X, 0, 354), 0, 6),
                             "InOut",
                             "Linear",
                             0.05,
@@ -596,7 +603,7 @@ function HelloHub.CreateWin(title)
                                 SliderValue.Text = value
                                 value =
                                     math.floor(
-                                    (((tonumber(max) - tonumber(min)) / 355) * SliderDrag.AbsoluteSize.X) +
+                                    (((tonumber(max) - tonumber(min)) / 354) * SliderDrag.AbsoluteSize.X) +
                                         tonumber(min)
                                 )
                                 pcall(
@@ -605,7 +612,7 @@ function HelloHub.CreateWin(title)
                                     end
                                 )
                                 SliderDrag:TweenSize(
-                                    UDim2.new(0, math.clamp(mouse.X - SliderDrag.AbsolutePosition.X, 0, 355), 0, 6),
+                                    UDim2.new(0, math.clamp(mouse.X - SliderDrag.AbsolutePosition.X, 0, 354), 0, 6),
                                     "InOut",
                                     "Linear",
                                     0.05,
@@ -622,7 +629,7 @@ function HelloHub.CreateWin(title)
                                  then
                                     value =
                                         math.floor(
-                                        (((tonumber(max) - tonumber(min)) / 355) * SliderDrag.AbsoluteSize.X) +
+                                        (((tonumber(max) - tonumber(min)) / 354) * SliderDrag.AbsoluteSize.X) +
                                             tonumber(min)
                                     )
                                     pcall(
@@ -637,7 +644,7 @@ function HelloHub.CreateWin(title)
                                         {TextTransparency = 1}
                                     ):Play()
                                     SliderDrag:TweenSize(
-                                        UDim2.new(0, math.clamp(mouse.X - SliderDrag.AbsolutePosition.X, 0, 355), 0, 6),
+                                        UDim2.new(0, math.clamp(mouse.X - SliderDrag.AbsolutePosition.X, 0, 354), 0, 6),
                                         "InOut",
                                         "Linear",
                                         0.05,
