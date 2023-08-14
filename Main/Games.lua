@@ -7,7 +7,7 @@ local games = {
     [11520107397] = "loadstring(game:HttpGet('https://raw.githubusercontent.com/LyricArc72030/HelloHub/main/Scripts/Slap-Battles.lua', true))()"
 }
 
-if not games[game.PlaceId] ~= nil then
+if games[game.PlaceId] ~= nil then
     loadstring(games[tonumber(game.PlaceId)])()
 else
     game.Players.LocalPlayer:Kick("Game Not Supported! :(")
