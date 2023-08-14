@@ -4,7 +4,9 @@ local games = {
     -- Slap Battles (No Oneshot)
     [9015014224] = "loadstring(game:HttpGet('https://raw.githubusercontent.com/LyricArc72030/HelloHub/main/Scripts/Slap-Battles.lua', true))()",
     -- Slap Battles (Killstreak Only)
-    [11520107397] = "loadstring(game:HttpGet('https://raw.githubusercontent.com/LyricArc72030/HelloHub/main/Scripts/Slap-Battles.lua', true))()"
+    [11520107397] = "loadstring(game:HttpGet('https://raw.githubusercontent.com/LyricArc72030/HelloHub/main/Scripts/Slap-Battles.lua', true))()",
+    -- Slap Royale
+    [9431156611] = "loadstring(game:HttpGet('https://raw.githubusercontent.com/LyricArc72030/HelloHub/main/Scripts/Slap-Royale.lua', true))()"
 }
 
 if games[game.PlaceId] ~= nil then
