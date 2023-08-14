@@ -2,6 +2,7 @@ local HelloHub = {}
 local UIS = game:GetService("UserInputService")
 local tween = game:GetService("TweenService")
 local coreGui = game:GetService("CoreGui")
+local viewport = workspace.CurrentCamera.ViewportSize
 local tweenInfo = TweenInfo.new
 
 function HelloHub:MakeDraggable(frame)
@@ -94,7 +95,8 @@ function HelloHub.CreateWin(title)
 
     Main.Name = "Main"
     Main.Size = UDim2.new(0, 530, 0, 300)
-    Main.Position = UDim2.new(0.336503863, 0, 0.275485456, 0)
+    Main.Position =
+        UDim2.fromOffset((viewport.X / 2) - (Main.Size.X.Offset / 2), (viewport.Y / 2) - (Main.Size.Y.Offset / 2))
     Main.BackgroundColor3 = Color3.fromRGB(15, 15, 15)
     Main.Active = true
     Main.ClipsDescendants = true
@@ -178,7 +180,7 @@ function HelloHub.CreateWin(title)
                 .1,
                 true
             )
-            task.wait(.3)
+            task.wait(1)
             Hello:Destroy()
         end
     )
