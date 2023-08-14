@@ -180,7 +180,7 @@ function HelloHub.CreateWin(title)
                 .1,
                 true
             )
-            task.wait(1)
+            task.wait(.5)
             Hello:Destroy()
         end
     )
