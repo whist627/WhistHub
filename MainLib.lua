@@ -53,24 +53,14 @@ function HelloHub:MakeDraggable(frame)
     )
 end
 
-local RanName =
-    tostring(math.random(1, 100)) ..
-    tostring(math.random(1, 50)) ..
-        tostring(math.random(1, 100)) ..
-            tostring(math.random(1, 50)) ..
-                tostring(math.random(1, 100)) ..
-                    tostring(math.random(1, 50)) ..
-                        tostring(math.random(1, 100)) ..
-                            tostring(math.random(1, 50)) ..
-                                tostring(math.random(1, 100)) ..
-                                    tostring(math.random(1, 50)) ..
-                                        tostring(math.random(1, 100)) ..
-                                            tostring(math.random(1, 50)) ..
-                                                tostring(math.random(1, 100)) ..
-                                                    tostring(math.random(1, 50)) ..
-                                                        tostring(math.random(1, 100)) ..
-                                                            tostring(math.random(1, 50)) ..
-                                                                tostring(math.random(1, 100))
+function RanName()
+    local length = math.random(10, 40)
+    local args = {}
+    for i = 1, length do
+        args[i] = string.char(math.random(50, 130))
+    end
+    return table.concat(args)
+end
 
 function HelloHub.CreateWin(title)
     title = title or "Title"
@@ -89,7 +79,7 @@ function HelloHub.CreateWin(title)
     local TabPad = Instance.new("UIPadding", TabHolder)
     local Contents = Instance.new("Frame", Main)
 
-    Hello.Name = RanName
+    Hello.Name = RanName()
     Hello.ResetOnSpawn = false
     Hello.IgnoreGuiInset = true
 
