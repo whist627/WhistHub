@@ -1,3 +1,9 @@
+--[[ 
+    THIS LIB IS NOT (YET) FOR PUBLIC!!
+    ------------------------------------
+    DON'T USE IT FOR YOUR SCRIPT HUBS!!
+    THIS IS STILL IN DEVELOPMENT!!
+]]
 local HelloHub = {}
 local UIS = game:GetService("UserInputService")
 local tween = game:GetService("TweenService")
@@ -54,17 +60,20 @@ function HelloHub:MakeDraggable(frame)
 end
 
 function RanName()
-    local length = math.random(10, 40)
+    local len = math.random(10, 40)
     local args = {}
-    for i = 1, length do
+    for i = 1, len do
         args[i] = string.char(math.random(50, 130))
     end
     return table.concat(args)
 end
 
+local mouse = game:GetService("Players").LocalPlayer:GetMouse()
+
 function HelloHub.CreateWin(title)
     title = title or "Title"
     local tb = true
+    local focus = false
     local currenttab = ""
     local Hello = Instance.new("ScreenGui", coreGui)
     local Main = Instance.new("Frame", Hello)
@@ -301,7 +310,6 @@ function HelloHub.CreateWin(title)
             TabContent.Visible = false
         end
 
-        local focus = false
         local Content = {}
         function Content:NewLabel(labelTitle)
             labelTitle = labelTitle or "Label"
@@ -371,7 +379,6 @@ function HelloHub.CreateWin(title)
             ButtonIcon.ImageColor3 = Color3.fromRGB(255, 255, 255)
 
             upSize()
-
             Button.MouseButton1Click:Connect(
                 function()
                     pcall(callback)
@@ -462,7 +469,6 @@ function HelloHub.CreateWin(title)
             ToggleBtnCircleCorner.CornerRadius = UDim.new(1, 0)
 
             upSize()
-
             Toggle.MouseButton1Click:Connect(
                 function()
                     if toggled == false then
@@ -561,9 +567,6 @@ function HelloHub.CreateWin(title)
             SliderValue.TextTransparency = 1
 
             upSize()
-
-            local mouse = game:GetService("Players").LocalPlayer:GetMouse()
-
             local value
             SliderBack.MouseButton1Down:Connect(
                 function()
