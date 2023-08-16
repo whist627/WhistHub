@@ -1,3 +1,9 @@
+--[[
+    DO NOT COPY THIS CODE!!
+
+    PROPERTY AND OWNED BY HELLO HUB (auci349)
+]]
+
 local games = {
     -- Slap Battles
     [6403373529] = "loadstring(game:HttpGet('https://raw.githubusercontent.com/auci349/HelloHub/main/Scripts/Slap-Battles.lua', true))()",
