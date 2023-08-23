@@ -15,6 +15,7 @@ local store = game:GetService("ReplicatedStorage").Lib
 local mouse = game:GetService("Players").LocalPlayer:GetMouse()
 local speaker = game:GetService("Players").LocalPlayer
 speeds = 3.5
+curFly = false
 
 local HelloHub = loadstring(game:HttpGet("https://pastebin.com/raw/TFKcNhTp"))()
 local Win = HelloHub.CreateWin("Eternal Bob")
@@ -245,11 +246,11 @@ Main:NewButton(
     end
 )
 
-Main:NewToggle(
-    "Fly",
-    function(bool)
-        if bool == true then
-            bool = false
+Main:NewButton(
+    "Fly (Press Again to Turn Off)",
+    function()
+        if curFly == true then
+            curFly = false
             speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Climbing, true)
             speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.FallingDown, true)
             speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Flying, true)
@@ -267,7 +268,7 @@ Main:NewToggle(
             speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Swimming, true)
             speaker.Character.Humanoid:ChangeState(Enum.HumanoidStateType.RunningNoPhysics)
         else
-            bool = true
+            curFly = true
             for i = 1, speeds do
                 spawn(
                     function()
@@ -329,10 +330,10 @@ Main:NewToggle(
             local bv = Instance.new("BodyVelocity", torso)
             bv.velocity = Vector3.new(0, 0.1, 0)
             bv.maxForce = Vector3.new(9e9, 9e9, 9e9)
-            if bool == true then
+            if curFly == true then
                 plr.Character.Humanoid.PlatformStand = true
             end
-            while bool == true or game:GetService("Players").LocalPlayer.Character.Humanoid.Health == 0 do
+            while curFly == true or game:GetService("Players").LocalPlayer.Character.Humanoid.Health == 0 do
                 game:GetService("RunService").RenderStepped:Wait()
 
                 if ctrl.l + ctrl.r ~= 0 or ctrl.f + ctrl.b ~= 0 then
@@ -394,10 +395,10 @@ Main:NewToggle(
             local bv = Instance.new("BodyVelocity", UpperTorso)
             bv.velocity = Vector3.new(0, 0.1, 0)
             bv.maxForce = Vector3.new(9e9, 9e9, 9e9)
-            if bool == true then
+            if curFly == true then
                 plr.Character.Humanoid.PlatformStand = true
             end
-            while bool == true or game:GetService("Players").LocalPlayer.Character.Humanoid.Health == 0 do
+            while curFly == true or game:GetService("Players").LocalPlayer.Character.Humanoid.Health == 0 do
                 wait()
 
                 if ctrl.l + ctrl.r ~= 0 or ctrl.f + ctrl.b ~= 0 then
