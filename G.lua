@@ -249,6 +249,7 @@ Main:NewToggle(
     "Fly",
     function(bool)
         if bool == true then
+            bool = false
             speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Climbing, true)
             speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.FallingDown, true)
             speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Flying, true)
@@ -266,6 +267,7 @@ Main:NewToggle(
             speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Swimming, true)
             speaker.Character.Humanoid:ChangeState(Enum.HumanoidStateType.RunningNoPhysics)
         else
+            bool = true
             for i = 1, speeds do
                 spawn(
                     function()
