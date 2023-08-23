@@ -11,7 +11,9 @@ local games = {
     -- Slap Battles (Killstreak Only)
     [11520107397] = "loadstring(game:HttpGet('https://raw.githubusercontent.com/auci349/HelloHub/main/Scripts/Slap-Battles.lua', true))()",
     -- Slap Royale
-    [9431156611] = "loadstring(game:HttpGet('https://raw.githubusercontent.com/auci349/HelloHub/main/Scripts/Slap-Royale.lua', true))()"
+    [9431156611] = "loadstring(game:HttpGet('https://raw.githubusercontent.com/auci349/HelloHub/main/Scripts/Slap-Royale.lua', true))()",
+    -- Eternal Bob
+    [13833961666] = "loadstring(game:HttpGet('https://raw.githubusercontent.com/auci349/HelloHub/main/Scripts/Eternal-Bob.lua', true))()"
 }
 
 if games[game.PlaceId] ~= nil then
