@@ -1,4 +1,5 @@
 # HelloHub
 HelloHub is one of the Exploit Hub in Roblox! Try it out!
-Script: 
+
+Script:
 # loadstring(game:HttpGet("https://raw.githubusercontent.com/auci349/HelloHub/main/Main/Main-Loadstring.lua", true))()
