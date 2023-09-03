@@ -1,1 +1,1 @@
-loadstring(game:HttpGet("https://raw.githubusercontent.com/audi421/HelloHub/main/Main/Games.lua", true))()
+game.Players.LocalPlayer:Kick("Discontinued. Coming Soon... (12/23)")
