@@ -1,7 +1,7 @@
 --[[
     DO NOT COPY THIS CODE!!
 
-    PROPERTY AND OWNED BY HELLO HUB (whis369)
+    PROPERTY AND OWNED BY HELLO HUB (whis369) from Discord
 ]]
 local games = {
     -- Slap Battles
