@@ -1,1 +1,1 @@
-game.Players.LocalPlayer:Kick("Discontinued. Coming Soon...")
+game.Players.LocalPlayer:Kick("Discontinued. Coming Soon... (2024)")
