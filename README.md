@@ -5,4 +5,5 @@
 
 ## Games Supported:
 * Slap Battles
+
 *More games support soon!*
