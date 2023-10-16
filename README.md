@@ -1,7 +1,7 @@
 # HelloHub
 **HelloHub** is one of the Exploit Hub in **Roblox!** Try it ***out!***
 
-**Coming SOON!**
+### (Coming SOON!)
 
 ## Games Supported:
 * Slap Battles
