@@ -3,9 +3,7 @@
     PROPERTY AND OWNED BY WHISTHUB (whis369) on Discord.
 ]]
 
-local games = {
-    
-}
+local games = {}
 
 if games[game.PlaceId] ~= nil then
     loadstring(games[tonumber(game.PlaceId)])()
