@@ -1,1 +1,1 @@
-loadstring(game:HttpGet("https://raw.githubusercontent.com/whis369/WhistHub/main/Main/Games.lua", true))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/rhex369/WhistHub/main/Main/Games.lua", true))()
