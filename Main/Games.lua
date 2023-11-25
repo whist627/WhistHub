@@ -1,6 +1,6 @@
 --[[
     DO NOT COPY THIS CODE!!
-    PROPERTY AND OWNED BY WHISTHUB (whis369) on Discord.
+    PROPERTY AND OWNED BY WHISTHUB (blist420) on Discord.
 ]]
 
 local games = {}
